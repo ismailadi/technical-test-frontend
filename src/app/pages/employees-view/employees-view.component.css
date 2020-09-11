@@ -1,0 +1,17 @@
+.employee-view {
+    width: 100%;
+    margin-bottom: 5vh;
+}
+
+table {
+    width: 100%;
+}
+
+table tbody tr td {
+    vertical-align: middle;
+}
+
+.pagination {
+    display: block;
+    margin-left: 100px;
+}

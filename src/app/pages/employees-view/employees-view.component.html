@@ -1,0 +1,74 @@
+<div class="employee-view">
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">NIK</th>
+          <th scope="col">Name</th>
+          <th scope="col">Division</th>
+          <th scope="col">Position</th>
+          <th scope="col">Type</th>
+          <th scope="col">Last Position</th>
+          <th scope="col">Created Date</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let employee of employees">
+          <td scope="row">
+            {{ employee.id }}
+          </td>
+          <td>
+            {{ employee.nik }}
+          </td>
+          <td>
+            {{ employee.name }}
+          </td>
+          <td>
+            {{ employee.division.name }}
+          </td>
+          <td>
+            {{ employee.position.name }}
+          </td>
+          <td>
+            {{ employee.type }}
+          </td>
+          <td>
+            {{ employee.lastPosition }}
+          </td>
+          <td>
+            {{ employee.createdDate | date}}
+          </td>
+          <td>
+            <a routerLink="/employees/form/{{employee.id}}">
+              <button type="button" class="btn btn-info">Edit</button>
+            </a>
+            &nbsp;
+            <button type="button" class="btn btn-danger" (click)="deleteEmployee(employee.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="d-flex justify-content-between align-items-center p-2">
+      <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="initData()">
+      </ngb-pagination>
+
+      <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" [(ngModel)]="pageSize"
+        (ngModelChange)="initData()">
+        <label ngbButtonLabel class="btn-primary">
+          <input ngbButton type="radio" [value]="5"> 5
+        </label>
+        <label ngbButtonLabel class="btn-primary">
+          <input ngbButton type="radio" value="10"> 10
+        </label>
+        <label ngbButtonLabel class="btn-primary">
+          <input ngbButton type="radio" [value]="25"> 25
+        </label>
+      </div>
+    </div>
+  </div>
+  <a routerLink="/employees/form">
+    <button type="button" class="btn btn-primary">Add New Employee</button>
+  </a>
+</div>

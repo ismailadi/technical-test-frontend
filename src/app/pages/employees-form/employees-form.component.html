@@ -1,0 +1,33 @@
+<div class="container-md">
+  <a routerLink="/employees" class="back">
+    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-left-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5.5a.5.5 0 0 0 0-1H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5z"/>
+    </svg>
+  </a>
+  <h2>Employee Data</h2>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="nik">NIK</label>
+      <input type="text" class="form-control" id="nik" placeholder="" formControlName="nik" disabled>
+    </div>
+    
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="name" placeholder="Fill your name" formControlName="name" required>
+    </div>
+    <div class="form-group">
+      <label for="divison">Division: </label>
+      <select class="form-control" id="divison" formControlName="divisionId" required>
+        <option *ngFor="let division of divisions" [ngValue]="division.id">{{division.name}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="position">Position: </label>
+      <select class="form-control" id="position" formControlName="positionId" required>
+        <option *ngFor="let position of positions;" [ngValue]="position.id">{{position.name}}</option>
+      </select>
+    </div>
+    <input *ngIf="isUpdate" class="btn btn-primary btn-block" type="submit" value="Update" [disabled]="!form.valid">
+    <input *ngIf="!isUpdate" class="btn btn-primary btn-block" type="submit" value="Save" [disabled]="!form.valid">
+  </form>
+</div>
